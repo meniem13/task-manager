@@ -9,7 +9,7 @@ import {
 } from "../../lib/store"; // Adjust path if necessary
 import { addTask } from "../../lib/store";
 import { useSearchParams } from "next/navigation";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Suspense, useState } from "react";
 
 const Page = () => {
   const params = useSearchParams();
@@ -208,4 +208,12 @@ const Page = () => {
   );
 };
 
-export default Page;
+const Wrapper = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Page />
+    </Suspense>
+  );
+};
+
+export default Wrapper;
